@@ -1,0 +1,12 @@
+language: ruby
+rvm:
+- 2.6.0
+services:
+- postgresql
+deploy:
+  provider: heroku
+  api_key:
+    secure: eVjhR/etBdOGJxgCasn31aLyP1zaB9M+N/gvKLQF0Bn3hVdJOMZMvN7x13hTbjz7bRgb/kiD15ij+e5vF9IdqDWBDig/MoFH7SOdG90WrAMNjHIFXBSPr8cD5yK1J9g1HsaeSG+a3f3os0CL25slZdXiGllzMTwsPDdKUExD+w5XighK0ZJmzt4Ol/49k6/zGcoBdHOyPrKKJSJ5bniFJ4Qa7WoJcyMMR/c7Q22GaDvFumwe97TiftaEG9budXk5ibvo6drj2k3OzHSQjYxh2aN7pYfGGjlzEGgAY3jxGMY5C7UhTjcBrU//1GggOFdQUPvceoN0wwNKFApDipdyht+5THIssPCBQr7fbBrLzm+zfLyJlJXOI/4LSC2WJScnqKL8IoZu2RxzTO6+LNHb00WDW7/oSpIVNI86Hh38C24+cp0qTDu3tq0tcBL9c98nOgIXWxfjsja3uSZUNL5AbKDxeYEHQargcZe+RotExnWo0xIUmaIK47xFgsfl0x4uluiDYj/ClTFuPb+awKntoyAs1UpPjUnaBxAjV2Cf2TgSSP9bjzm1Tdt2KkPkMRH/RCMMI1+H8zbM/dQjLTynAQUZFLgN5JcULo58DVsf2j4/1qRgsv6MKZu8m8YzMADOlWq4ylYeOClpk0BlKd4X9+4K+DApIAPMOixfs0SdW6Q=
+  app: korouroborous
+  on:
+    repo: Myrdden/koroibos
