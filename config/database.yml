@@ -10,7 +10,7 @@ development:
 
 test:
   <<: *default
-  database: koroibos-test
+  database: travis_ci_test
 
 production:
   <<: *default
