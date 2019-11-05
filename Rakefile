@@ -23,6 +23,7 @@ task :import, [:env, :file] do |t, args|
     sh 'rake db:migrate'
   end
 
+  puts 'Begin Setup...'
   olympian_columns = [:name, :sex, :age, :height, :weight, :team_id, :sport_id]
   olympians = []
   last_olympian = 0
@@ -68,7 +69,7 @@ task :import, [:env, :file] do |t, args|
     medal = 2 if line[9] == 'Silver'
     medal = 3 if line[9] == 'Gold'
     olympian_event = [line[6], medal, last_olympian]
-    event = events.find_index {|event| event == line[8]}
+    event = events.find_index {|event| event[0] == line[8]}
     if event
       olympian_event << event + 1
     else
@@ -79,9 +80,11 @@ task :import, [:env, :file] do |t, args|
     olympian_events << olympian_event
     last = line[0]
   end
+  puts 'Setup Complete, Importing...'
   Sport.import sport_columns, sports
   Team.import team_columns, teams
   Olympian.import olympian_columns, olympians
   Event.import event_columns, events
   OlympianEvent.import olympian_event_columns, olympian_events
+  puts 'Import Complete.'
 end
