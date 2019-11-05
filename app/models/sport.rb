@@ -1,3 +1,3 @@
 class Sport < ActiveRecord::Base
-  has_many :olympians
+  has_many :events
 end
