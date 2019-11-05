@@ -17,7 +17,7 @@ task :import, [:env, :file] do |t, args|
   args.with_defaults(env: 'development', file: 'prod_seeds_2016.csv')
   if args.env == 'test'
     sh 'RACK_ENV=test rake db:migrate:reset db:test:prepare'
-  else
+  elsif args.env == 'development'
     sh 'rake db:drop'
     sh 'rake db:create'
     sh 'rake db:migrate'
