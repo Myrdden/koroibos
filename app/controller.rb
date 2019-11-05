@@ -32,7 +32,7 @@ class Controller < Sinatra::Base
   end
 
   get '/api/v1/teams/:id' do
-    json TeamSerializer.new(Team.includes(:olympians).find(params[:id]))
+    json TeamSerializer.new(Team.includes(olympians: :olympian_events).find(params[:id]))
   end
 
   get '/api/v1/olympian_stats' do
