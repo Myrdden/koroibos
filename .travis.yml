@@ -4,8 +4,7 @@ rvm:
 services:
 - postgresql
 before_script:
-  - psql -c 'create database koroibos-test;' -U postgres
-  - RAKE_ENV=test rake db:test:prepare
+  - RAKE_ENV=test rake db:create db:test:prepare
 deploy:
   provider: heroku
   api_key:
