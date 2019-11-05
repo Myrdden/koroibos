@@ -1,6 +1,6 @@
-class EventSerializer
+class TeamSerializer
   include FastJsonapi::ObjectSerializer
-  attribute :name
+  attributes :name
 
   attribute :olympians
 end
