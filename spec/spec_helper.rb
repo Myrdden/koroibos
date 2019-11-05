@@ -11,7 +11,7 @@ SimpleCov.start
 
 module RSpecMixin
   include Rack::Test::Methods
-  def app() BaseController end
+  def app() Controller end
 end
 
 RSpec.configure do |config|
