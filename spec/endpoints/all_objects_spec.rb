@@ -16,4 +16,13 @@ RSpec.describe 'All Objects:' do
 
     expect(response.body).to eq(expected)
   end
+
+  it 'Teams' do
+    path = File.expand_path('../expectations/all_teams.json', File.dirname(__FILE__))
+    expected = File.read(path).chomp
+    response = get '/api/v1/teams'
+
+    expect(response.body).to eq(expected)
+  end
+
 end
