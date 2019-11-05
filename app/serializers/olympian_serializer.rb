@@ -9,4 +9,8 @@ class OlympianSerializer
   attribute :sport do |obj|
     obj.sport.name
   end
+
+  attribute :total_medals do |obj|
+    obj.total_medals
+  end
 end
