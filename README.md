@@ -25,4 +25,104 @@ You will need: Bundle & Postgresql
 
 ## How to Use:
 
+* [All Olympians](#all-olympians)
+* [Single Olympian](#single-olympian)
+* [All Teams](#all-teams)
+* [Single Team](#single-team)
 
+#### All Olympians
+GET `api/v1/olympians`
+```
+{"data":
+  [
+    {"id":"1",
+     "type":"olympian",
+     "attributes": {
+        "name":"Andreea Aanei",
+        "age":22,
+        "team":"Romania",
+        "sport":"Weightlifting",
+        "total_medals":0
+      }
+    },
+    {...}
+  ]
+}
+```
+
+#### Single Olympian
+GET `api/v1/olympians/:id` (ex. 50)
+```
+{
+  "data": {
+    "id": "50",
+    "type": "olympian",
+    "attributes": {
+      "name": "Denis Mikhaylovich Ablyazin",
+      "age": 24,
+      "team": "Russia",
+      "sport": "Gymnastics",
+      "total_medals": 3
+    }
+  }
+}
+```
+
+#### All Teams
+GET `api/v1/teams`
+```
+{
+  "data": [
+    {
+      "id": "1",
+      "type": "team",
+      "attributes": {
+        "name": "Romania",
+        "olympians": [
+          {
+            "id": 2735,
+            "name": "Valentina Neli Elisei (Ardean-)",
+            "age": 34,
+            "sex": "F",
+            "height": 172,
+            "weight": 64,
+            "team_id": 1,
+            "sport_id": 6
+          },
+          {...}
+        ],
+        "total_medals": 7
+      }
+    },
+    {...}
+  ]
+}
+```
+
+#### Single Team
+GET `/api/v1/teams/:id` (ex. 42)
+```
+{
+  "data": {
+    "id": "42",
+    "type": "team",
+    "attributes": {
+      "name": "India",
+      "olympians": [
+        {
+          "id": 77,
+          "name": "Sharath Kamal Achanta",
+          "age": 34,
+          "sex": "M",
+          "height": 186,
+          "weight": 85,
+          "team_id": 42,
+          "sport_id": 21
+        },
+        {...}
+      ],
+      "total_medals": 0
+    }
+  }
+}
+```
