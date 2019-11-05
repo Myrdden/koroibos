@@ -1,0 +1,17 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: koroibos-dev
+
+test:
+  <<: *default
+  database: koroibos-test
+
+production:
+  <<: *default
+  database: koroibos-production

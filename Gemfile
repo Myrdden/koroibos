@@ -15,7 +15,7 @@ group :test do
   gem 'pry'
   gem 'rack-test'
   gem 'rspec'
-  gem 'factory_bot'
-  gem 'faker'
   gem 'database_cleaner'
+  gem 'shoulda'
+  gem 'shoulda-matchers'
 end

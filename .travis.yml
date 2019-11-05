@@ -3,6 +3,8 @@ rvm:
 - 2.6.0
 services:
 - postgresql
+before_script:
+  - RAKE_ENV=test rake db:create db:test:prepare
 deploy:
   provider: heroku
   api_key:
