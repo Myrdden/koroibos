@@ -27,6 +27,10 @@ class Controller < Sinatra::Base
     json EventSerializer.new(Event.includes(olympian_events: :olympian).find(params[:id]))
   end
 
+  get '/api/v1/teams' do
+    json TeamSerializer.new(Team.includes(olympians: :olympian_events))
+  end
+
   get '/api/v1/teams/:id' do
     json TeamSerializer.new(Team.includes(:olympians).find(params[:id]))
   end
