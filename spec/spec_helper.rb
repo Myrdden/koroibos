@@ -1,10 +1,13 @@
 require 'rack/test'
 require 'rspec'
+require 'simplecov'
 require 'shoulda/matchers'
 
 ENV['RACK_ENV'] = 'test'
 
 require_relative '../app.rb'
+
+SimpleCov.start
 
 module RSpecMixin
   include Rack::Test::Methods

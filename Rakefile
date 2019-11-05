@@ -7,18 +7,21 @@ require './app'
 
 RSpec::Core::RakeTask.new(:spec)
 
-task :default => :spec
-
-task :heck do |t|
-  Team.create!(name: "hecc")
-
-  p Team.all
+task :default do |t|
+  sh 'RACK_ENV=test rake import[test,test_seeds.csv]'
+  # Rake::Task[:import].invoke('test', 'test_seeds.csv')
+  Rake::Task[:spec].invoke
 end
 
-task :import do |t|
-  sh 'rake db:drop'
-  sh 'rake db:create'
-  sh 'rake db:migrate'
+task :import, [:env, :file] do |t, args|
+  args.with_defaults(env: 'development', file: 'prod_seeds_2016.csv')
+  if args.env == 'test'
+    sh 'RACK_ENV=test rake db:migrate:reset db:test:prepare'
+  else
+    sh 'rake db:drop'
+    sh 'rake db:create'
+    sh 'rake db:migrate'
+  end
 
   olympian_columns = [:name, :sex, :age, :height, :weight, :team_id, :sport_id]
   olympians = []
@@ -35,7 +38,7 @@ task :import do |t|
   olympian_event_columns = [:games, :medal, :olympian_id, :event_id]
   olympian_events = []
   last = ""
-  contents = CSV.read('csv/olympic_data_2016.csv')
+  contents = CSV.read("csv/#{args.file}")
   contents.shift
   contents.each do |line|
     sport = sports.find_index {|sport| sport[0] == line[7]}
