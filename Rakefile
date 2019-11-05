@@ -2,15 +2,19 @@ require 'sinatra/activerecord'
 require 'sinatra/activerecord/rake'
 require 'fileutils'
 require 'activerecord-import'
-require 'rspec/core/rake_task'
 require './app'
 
-RSpec::Core::RakeTask.new(:spec)
+begin
+  require 'rspec/core/rake_task'
 
-task :default do |t|
-  sh 'RACK_ENV=test rake import[test,test_seeds.csv]'
-  # Rake::Task[:import].invoke('test', 'test_seeds.csv')
-  Rake::Task[:spec].invoke
+  RSpec::Core::RakeTask.new(:spec)
+
+  task :default do |t|
+    sh 'RACK_ENV=test rake import[test,test_seeds.csv]'
+    # Rake::Task[:import].invoke('test', 'test_seeds.csv')
+    Rake::Task[:spec].invoke
+  end
+rescue LoadError
 end
 
 task :import, [:env, :file] do |t, args|
@@ -22,7 +26,6 @@ task :import, [:env, :file] do |t, args|
     sh 'rake db:create'
     sh 'rake db:migrate'
   end
-
   puts 'Begin Setup...'
   olympian_columns = [:name, :sex, :age, :height, :weight, :team_id, :sport_id]
   olympians = []
