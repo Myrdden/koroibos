@@ -11,6 +11,6 @@ class OlympianSerializer
   end
 
   attribute :total_medals do |obj|
-    obj.total_medals
+    obj.olympian_events.inject(0) {|sum,x| sum + (x.medal == 0 ? 0 : 1)}
   end
 end

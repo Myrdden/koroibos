@@ -8,9 +8,4 @@ RSpec.describe Olympian, type: :model do
   it 'seed data is present' do
     expect(Olympian.count).to eq(2850)
   end
-
-  it 'total_medals' do
-    denis = Olympian.find(50)
-    expect(denis.total_medals).to eq(3)
-  end
 end
